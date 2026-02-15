@@ -1,0 +1,113 @@
+  /* --- 1. CORE VISUALS & FONTS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap');
+
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background-color: #000; 
+            font-family: 'Rajdhani', sans-serif;
+            user-select: none;
+        }
+
+        /* --- 2. UI LAYOUT --- */
+        #ui-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; /* Let clicks pass through to 3D */
+            z-index: 10;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+
+        /* Header / HUD Top */
+        .hud-header {
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(0, 10, 20, 0.9) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+            pointer-events: auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .title-block h1 {
+            color: #00f2ff; margin: 0; font-size: 36px; text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.8); letter-spacing: 4px;
+        }
+        .title-block .subtitle {
+            font-family: 'Share Tech Mono', monospace; color: #ffd700; font-size: 14px; margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        /* Dashboard Stats */
+        .stats-container {
+            display: flex; gap: 30px;
+        }
+        .stat-box { text-align: right; }
+        .stat-label { color: #888; font-size: 12px; font-weight: bold; letter-spacing: 1px; }
+        .stat-value { color: #fff; font-size: 20px; font-family: 'Share Tech Mono'; text-shadow: 0 0 5px white; }
+
+        /* --- 3. SIDE PANEL (DATA) --- */
+        #info-panel {
+            position: absolute; right: -400px; top: 100px; bottom: 100px;
+            width: 320px;
+            background: rgba(5, 15, 25, 0.9);
+            border-left: 2px solid #00f2ff;
+            backdrop-filter: blur(10px);
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 30px; box-sizing: border-box;
+            pointer-events: auto;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+        }
+        #info-panel.active { right: 0; }
+        
+        .p-name { 
+            font-size: 40px; color: #fff; font-weight: 800; text-transform: uppercase; 
+            border-bottom: 2px solid #ffd700; padding-bottom: 10px; margin-bottom: 20px;
+        }
+        .p-data-row {
+            display: flex; justify-content: space-between; padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1); color: #ccc;
+        }
+        .p-val { color: #00f2ff; font-weight: bold; font-family: 'Share Tech Mono'; }
+        
+        .moon-grid { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 15px; }
+        .moon-badge {
+            background: rgba(0, 242, 255, 0.15); border: 1px solid #00f2ff;
+            color: #fff; padding: 4px 8px; font-size: 11px; border-radius: 4px;
+        }
+
+        /* --- 4. BOTTOM CONTROLS --- */
+        .hud-footer {
+            padding: 20px;
+            background: linear-gradient(0deg, rgba(0, 10, 20, 0.9) 0%, transparent 100%);
+            display: flex; gap: 10px; pointer-events: auto; align-items: flex-end;
+        }
+
+        .btn {
+            background: rgba(0, 0, 0, 0.5); border: 1px solid #00f2ff; color: #00f2ff;
+            padding: 10px 20px; font-family: 'Rajdhani'; font-weight: bold; font-size: 16px;
+            cursor: pointer; transition: all 0.2s; text-transform: uppercase;
+        }
+        .btn:hover { background: #00f2ff; color: #000; box-shadow: 0 0 15px #00f2ff; }
+        .btn.active-mode { background: #ffd700; color: #000; border-color: #ffd700; }
+
+        /* Speed Slider */
+        .slider-group { background: rgba(0,0,0,0.6); padding: 10px 20px; border-radius: 5px; border: 1px solid #555; }
+        input[type=range] { accent-color: #ffd700; width: 200px; cursor: pointer; }
+
+        /* --- 5. TOOLTIP (HOVER) --- */
+        #tooltip {
+            position: absolute; pointer-events: none; opacity: 0;
+            background: rgba(0,0,0,0.8); border: 1px solid #ffd700;
+            color: #ffd700; padding: 5px 10px; border-radius: 4px;
+            transform: translate(-50%, -150%); transition: opacity 0.2s;
+            font-family: 'Share Tech Mono'; font-size: 12px; z-index: 20;
+        }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 100;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 1s;
+        }
+        .loader-text { color: #00f2ff; font-size: 24px; letter-spacing: 5px; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
