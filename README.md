@@ -47,9 +47,3 @@
 * **Pan:** Right Click + Drag
 * **Interact:** Click on any planet to open the data panel.
 * **Top View:** Resets camera to a bird's-eye perspective.
-
-## 📂 Installation
-
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/your-username/solar-engine-pro.git](https://github.com/anafibnshahibul/solar-engine-pro.git)
